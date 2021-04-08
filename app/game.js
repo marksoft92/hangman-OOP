@@ -1,3 +1,5 @@
+import { Quote } from "./quote.js";
+
 class Game {
 
     quotes = [{
@@ -13,6 +15,10 @@ class Game {
         this.outputWrapper = outputWrapper;
         this.wordWrapper = wordWrapper;
         this.categoryWrapper = categoryWrapper;
+
+        const { text, category } = this.quotes[Math.floor(Math.random() * this.quotes.length)]
+        this.categoryWrapper.innerHTML = category;
+        this.quote = new Quote(text)
     }
     quess(letters) {
         console.log(letters)
@@ -27,6 +33,8 @@ class Game {
             this.lettersWrapper.appendChild(button);
         }
     }
+
+
     start() {
         this.drawLetters()
     }
@@ -35,6 +43,6 @@ const game = new Game({
     lettersWrapper: document.getElementById('letters'),
     outputWrapper: document.getElementById('output'),
     wordWrapper: document.getElementById('word'),
-    categoryWrapper: document.getElementById('letters')
+    categoryWrapper: document.getElementById('category')
 });
 game.start()
